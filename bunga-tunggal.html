@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perhitungan Bunga Tunggal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Perhitungan Modal dan Bunga Tunggal</h2>
+
+        <form id="bungaForm" class="bg-white p-4 rounded shadow-sm">
+            <div class="mb-3">
+                <label for="modal" class="form-label">Modal Awal (Rp):</label>
+                <input type="number" class="form-control" id="modal" name="modal" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="bunga" class="form-label">Bunga (%) per Tahun:</label>
+                <input type="number" class="form-control" id="bunga" name="bunga" step="0.01" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="tahun" class="form-label">Jangka Waktu (Tahun):</label>
+                <input type="number" class="form-control" id="tahun" name="tahun" required>
+            </div>
+
+            <button type="button" class="btn btn-primary w-100" onclick="hitungBunga()">Hitung</button>
+        </form>
+
+        <h3 class="text-center mt-5">Hasil Perhitungan</h3>
+        <div id="hasilPerhitungan" class="bg-white p-4 rounded shadow-sm text-center mt-3 d-none">
+            <p><strong>Bunga (B):</strong> Rp <span id="hasilBunga"></span></p>
+            <p><strong>Modal Akhir (Mt):</strong> Rp <span id="hasilModalAkhir"></span></p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function hitungBunga() {
+            let modal = parseFloat(document.getElementById('modal').value);
+            let bungaTahunan = parseFloat(document.getElementById('bunga').value) / 100;
+            let tahun = parseInt(document.getElementById('tahun').value);
+
+            let bunga = modal * bungaTahunan * tahun;
+
+            let modalAkhir = modal + bunga;
+
+            document.getElementById('hasilBunga').textContent = bunga.toLocaleString('id-ID');
+            document.getElementById('hasilModalAkhir').textContent = modalAkhir.toLocaleString('id-ID');
+            document.getElementById('hasilPerhitungan').classList.remove('d-none');
+        }
+    </script>
+
+</body>
+
+</html>
